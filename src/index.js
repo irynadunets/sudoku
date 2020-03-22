@@ -1,6 +1,6 @@
 function Check(matrix, i, j, k) {
-    for(let m = 0; m < matrix.length; m++){        
-        if(matrix[i][m] == k || matrix[m][j] == k)  return false;
+    for (let m = 0; m < matrix.length; m++) {        
+        if (matrix[i][m] == k || matrix[m][j] == k )  return false;
       }
     return true;
   }
@@ -26,6 +26,6 @@ function Fill(matrix) {
  return true;
 }
 
-module.exports = function solveSudoku(matrix) {
+function solveSudoku(matrix) {
   if(Fill(matrix)) return matrix;
 }
