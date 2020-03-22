@@ -1,18 +1,31 @@
-module.exports = function solveSudoku(matrix) {
-  for(let i=0; i<matrix.length; i=i+1){
-    let missed = [];
-    let real = [];    
-    for(let j=1; j<10; j=j+1){ 
-      let findCount = matrix[i].filter(x => x===j).length;       
-      if(findCount<1) missed.push(j);
-    }   
-    for(let k=0; k<matrix.length; k=k+1){
-      if(matrix[i][k]===0||real.filter(x => x===matrix[i][k]).length>0){
-        matrix[i][k]=missed.shift();
-      } else {
-        real.push(matrix[i][k]);
-      }      
-    }      
+function Check(matrix, i, j, k) {
+    for(let m = 0; m < matrix.length; m++){        
+        if(matrix[i][m] == k || matrix[m][j] == k)  return false;
+      }
+    return true;
   }
-  return matrix;
+  
+function Fill(matrix) {
+  for(let i = 0; i < matrix.length; i++){
+    for(let j = 0; j < matrix.length; j++){
+      if(matrix[i][j] === 0) {
+        for (let k = 1; k <= matrix.length; k++) {
+          if (Check(matrix, i, j, k)) {
+            matrix[i][j] = k;
+          if(Fill(matrix)) {
+           return true;
+          } else {
+           matrix[i][j] = 0;
+          }
+         }
+       }
+       return false;
+     }
+   }
+ }
+ return true;
+}
+
+module.exports = function solveSudoku(matrix) {
+  if(Fill(matrix)) return matrix;
 }
