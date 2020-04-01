@@ -1,5 +1,4 @@
 module.exports = function solveSudoku(matrix) {
-  let Sudoku = (matrix) => {
     for (let i = 0; i < matrix.length; i++) {
       for (let j = 0; j <  matrix.length; j++) {
         if (matrix[i][j] === 0) {
@@ -10,18 +9,10 @@ module.exports = function solveSudoku(matrix) {
               }
             if(check){
               matrix[i][j] = k;
-            if (Sudoku(matrix)) {
-             return true;
+            if (solveSudoku(matrix)) {
+             return matrix;
             } else {
              matrix[i][j] = 0;
-            }
-           }
-         }
-         return false;
-       }
-     }
-   }
-   return true;
-  }
- if(Sudoku(matrix)) return matrix;
+            }}} return false;
+          }}} return true;
   }
